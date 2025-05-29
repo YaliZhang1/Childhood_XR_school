@@ -8,16 +8,78 @@
   <body>
     <a-scene>
       <a-assets>
-        <a-asset-item id="mymodel" src="/models/door.glb"></a-asset-item>
+        <a-asset-item
+          id="door"
+          src="/models/entry-door-sidelights.glb"
+        ></a-asset-item>
       </a-assets>
-
       <a-entity
-        gltf-model="#mymodel"
-        position="0 0.5 -6"
-        scale="0.04 0.04 0.04"
-         rotation="0 90 0"
+        gltf-model="#door"
+        position="0 0 -10"
+        scale="2 2 5"
+        rotation="0 0 0"
+      >
+        <a-image
+          src="/public/images/panda-white.png"
+          position="-0.18 0.01 0.8"
+          width="3"
+          height="2"
+          scale="1 1 1"
+          rotation="-90 0 0"
+        ></a-image
       ></a-entity>
-      <a-sky color="#ECECEC"></a-sky>
+
+      <a-assets>
+        <a-asset-item
+          id="ironwork"
+          src="/models/ironwork_for_stairs.glb"
+        ></a-asset-item>
+      </a-assets>
+      <a-entity
+        gltf-model="#ironwork"
+        position="1.5 0.5 -5"
+        scale="0.5 0.25 0.5"
+        rotation="0 -90 0"
+      ></a-entity>
+      <a-assets>
+        <a-asset-item
+          id="ironwork"
+          src="/models/ironwork_for_stairs.glb"
+        ></a-asset-item>
+      </a-assets>
+      <a-entity
+        gltf-model="#ironwork"
+        position="-2 0.5 -5"
+        scale="0.5 0.25 0.5"
+        rotation="0 -90 0"
+      ></a-entity>
+
+      <a-sky src="/public/images/blurred_bamboo_background.jpg"></a-sky>
+      <a-image
+        src="/public/images/two-red-panda.png"
+        position="4 3 -4"
+        width="2"
+        height="1"
+        scale="1 1 1"
+        rotation="0 -90 0"
+      ></a-image>
+    <a-image
+        src="/images/three-adorable-panda-cubs.jpg"
+        position="-4.5 2 0"
+        width="1"
+        height="1"
+        scale="0.5 0.5 0.5"
+        rotation="0 90 0"
+         material="shader: flat;"
+      ></a-image>
+      <a-image
+        src="/public/images/chengdu-door.jpg"
+        position="-4.5 2 -3"
+        width="1"
+        height="4"
+        scale="1 1 1"
+        rotation="0 90 0"
+      ></a-image>
     </a-scene>
   </body>
 </html>
