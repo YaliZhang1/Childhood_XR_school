@@ -9,15 +9,17 @@
     <a-scene>
       <a-assets>
         <a-asset-item
-          id="door"
+          id="scene1-door"
           src="/models/entry-door-sidelights.glb"
         ></a-asset-item>
       </a-assets>
       <a-entity
-        gltf-model="#door"
+        id="clickable-door1"
+        gltf-model="#scene1-door"
         position="0 0 -10"
         scale="2 2 5"
         rotation="0 0 0"
+        class="clickable"
       >
         <a-image
           src="/public/images/panda-white.png"
@@ -63,14 +65,14 @@
         scale="1 1 1"
         rotation="0 -90 0"
       ></a-image>
-    <a-image
+      <a-image
         src="/images/three-adorable-panda-cubs.jpg"
         position="-4.5 2 0"
         width="1"
         height="1"
         scale="0.5 0.5 0.5"
         rotation="0 90 0"
-         material="shader: flat;"
+        material="shader: flat;"
       ></a-image>
       <a-image
         src="/public/images/chengdu-door.jpg"
@@ -80,6 +82,32 @@
         scale="1 1 1"
         rotation="0 90 0"
       ></a-image>
+
+      <a-entity id="rig" position="0 0 0">
+        <a-entity
+          id="player-camera"
+          camera
+          position="0 1.6 0"
+          look-controls
+          wasd-controls
+        >
+          <a-cursor
+            fuse="true"
+            fuse-timeout="500"
+            geometry="primitive: ring; radiusInner: 0.01; radiusOuter: 0.02"
+            material="color: black; shader: flat"
+          ></a-cursor>
+        </a-entity>
+      </a-entity>
     </a-scene>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const door = document.querySelector("#clickable-door1");
+        door.addEventListener("click", () => {
+          window.location.href = "/src/scene2.html";
+        });
+      });
+    </script>
   </body>
 </html>

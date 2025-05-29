@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hotpot-street</title>
+    <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
+  </head>
+  <body>
+    <a-scene>
+      <a-assets>
+        <a-asset-item
+          id="jp-red"
+          src="/models/maybe_jp_drum.glb"
+        ></a-asset-item>
+      </a-assets>
+      <a-entity
+        gltf-model="#jp-red"
+        position="220 20 -200"
+        scale="0.1 0.1 0.1"
+        rotation="0 180 0"
+      ></a-entity>
+
+      <a-assets>
+        <a-asset-item id="hall" src="/models/chinese_hall.glb"></a-asset-item>
+      </a-assets>
+      <a-entity
+        gltf-model="#hall"
+        position="0 0.1 -450"
+        scale="0.1 0.1 0.1"
+        rotation="0 0 0"
+      ></a-entity>
+
+      <a-assets>
+        <a-asset-item
+          id="gate-china-yellow"
+          src="/models/gates_in_china_style.glb"
+        ></a-asset-item>
+      </a-assets>
+      <a-entity
+        gltf-model="#gate-china-yellow"
+        position="-15 0.1 -2"
+        scale="2.5 2.5 2.5"
+        rotation="0 180 0"
+      ></a-entity>
+
+      <a-assets>
+        <a-asset-item
+          id="restaurant1"
+          src="/models/restaurant1.glb"
+        ></a-asset-item>
+      </a-assets>
+      <a-entity
+        gltf-model="#restaurant1"
+        position="-15 5 -13"
+        scale="5 5 5"
+        rotation="0 60 0"
+      ></a-entity>
+      <a-assets>
+        <a-asset-item
+          id="entry-door-sidelights"
+          src="/models/entry-door-sidelights.glb"
+        ></a-asset-item>
+      </a-assets>
+      <a-entity
+        gltf-model="#entry-door-sidelights"
+        position="20 0 -13"
+        scale="5 5 5"
+        rotation="0 60 0"
+      ></a-entity>
+
+      <a-assets>
+        <a-asset-item
+          id="street-food"
+          src="/models/street_food.glb"
+        ></a-asset-item>
+      </a-assets>
+      <a-entity
+        gltf-model="#street-food"
+        position="100 -4 -70"
+        scale="0.05 0.05 0.05"
+        rotation="0 45 0"
+      ></a-entity>
+
+      <a-assets>
+        <a-asset-item
+          id="china_street_grey"
+          src="/models/china_street.glb"
+        ></a-asset-item>
+      </a-assets>
+      <a-entity
+        gltf-model="#china_street_grey"
+        position="-400 0.1 -330"
+        scale="0.5 0.5 0.5"
+        rotation="0 45 0"
+      ></a-entity>
+
+      <a-plane
+        position="0 0 -3"
+        rotation="-90 0 0"
+        width="100"
+        height="100"
+        color="#2C3B24"
+      ></a-plane>
+
+      <a-sky src="#" rotation="0 -90 0" color="#343A6D"></a-sky>
+
+      <a-entity id="rig" position="0 0 0">
+        <a-entity
+          id="player-camera"
+          camera
+          position="0 2 0"
+          look-controls
+          wasd-controls
+        >
+          <a-cursor
+            fuse="true"
+            fuse-timeout="500"
+            geometry="primitive: ring; radiusInner: 0.01; radiusOuter: 0.02"
+            material="color: black; shader: flat"
+          ></a-cursor>
+        </a-entity>
+      </a-entity>
+    </a-scene>
+  </body>
+</html>
