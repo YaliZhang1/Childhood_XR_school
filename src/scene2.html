@@ -51,11 +51,11 @@
       </a-assets>
       <a-entity
         gltf-model="#restaurant1"
-        position="-15 5 -13"
-        scale="5 5 5"
+        position="-15 7 -13"
+        scale="7 7 7"
         rotation="0 60 0"
       ></a-entity>
-       <a-assets>
+      <a-assets>
         <a-asset-item
           id="dining-table"
           src="/models/dining_table.glb"
@@ -67,7 +67,7 @@
         scale="0.1 0.1 0.1"
         rotation="10 10 0"
       ></a-entity>
-       <a-assets>
+      <a-assets>
         <a-asset-item
           id="dining-table"
           src="/models/dining_table.glb"
@@ -78,6 +78,18 @@
         position="-6 0 -6"
         scale="0.09 0.09 0.09"
         rotation="10 10 0"
+      ></a-entity>
+      <a-assets>
+        <a-asset-item
+          id="dining-table"
+          src="/models/dining_table.glb"
+        ></a-asset-item>
+      </a-assets>
+      <a-entity
+        gltf-model="#dining-table"
+        position="-60 0 -2"
+        scale="0.09 0.09 0.09"
+        rotation="5 5 0"
       ></a-entity>
       <a-assets>
         <a-asset-item
@@ -102,9 +114,22 @@
       </a-assets>
       <a-entity
         gltf-model="#street-food"
-        position="100 -4 -70"
-        scale="0.05 0.05 0.05"
-        rotation="0 45 0"
+        position="-15 0 -5"
+        scale="0.01 0.01 0.01"
+        rotation="0 -90 5"
+      ></a-entity>
+
+      <a-assets>
+        <a-asset-item
+          id="lumpia"
+          src="/models/gerobak_lumpia.glb"
+        ></a-asset-item>
+      </a-assets>
+      <a-entity
+        gltf-model="#lumpia"
+        position="-60 0 -5"
+        scale="0.01 0.01 0.01"
+        rotation="0 -300 3"
       ></a-entity>
 
       <a-assets>
@@ -119,6 +144,19 @@
         scale="1 1 1"
         rotation="0 -90 0"
       ></a-entity>
+
+      <!-- <a-assets>
+        <a-asset-item
+          id="truck"
+          src="/models/2021_ram_1500_trx.glb"
+        ></a-asset-item>
+      </a-assets>
+      <a-entity
+        gltf-model="#truck"
+        position="-10 0 80"
+        scale="5 5 5"
+        rotation="0 -90 0"
+      ></a-entity> -->
 
       <a-assets>
         <a-asset-item
@@ -165,7 +203,6 @@
       document.addEventListener("DOMContentLoaded", () => {
         const door2 = document.querySelector("#clickable-door2");
         door2.addEventListener("click", () => {
-         
           window.location.href = "../index.html";
         });
       });
