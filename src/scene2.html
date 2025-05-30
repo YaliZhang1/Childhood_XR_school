@@ -62,10 +62,12 @@
         ></a-asset-item>
       </a-assets>
       <a-entity
+        id="clickable-door2"
         gltf-model="#entry-door-sidelights"
-        position="20 0 -13"
+        position="30 0 -10"
         scale="5 5 5"
-        rotation="0 60 0"
+        rotation="0 0 0"
+        class="clickable"
       ></a-entity>
 
       <a-assets>
@@ -95,14 +97,14 @@
       ></a-entity>
 
       <a-plane
-        position="0 0 -3"
+        position="0 0.01 0"
         rotation="-90 0 0"
-        width="100"
-        height="100"
+        width="1000"
+        height="1000"
         color="#3a3a3a"
       ></a-plane>
 
-      <a-sky src="#" rotation="0 -90 0" color="#fecc70"></a-sky>
+      <a-sky color="#fecc70"></a-sky>
 
       <a-entity id="rig" position="0 0 0">
         <a-entity
@@ -121,5 +123,15 @@
         </a-entity>
       </a-entity>
     </a-scene>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const door2 = document.querySelector("#clickable-door2");
+        door2.addEventListener("click", () => {
+            console.log("场景2的门被点中了！");
+          window.location.href = "../index.html";
+        });
+      });
+    </script>
   </body>
 </html>
