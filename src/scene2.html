@@ -55,6 +55,30 @@
         scale="5 5 5"
         rotation="0 60 0"
       ></a-entity>
+       <a-assets>
+        <a-asset-item
+          id="dining-table"
+          src="/models/dining_table.glb"
+        ></a-asset-item>
+      </a-assets>
+      <a-entity
+        gltf-model="#dining-table"
+        position="-5 0 -10"
+        scale="0.1 0.1 0.1"
+        rotation="10 10 0"
+      ></a-entity>
+       <a-assets>
+        <a-asset-item
+          id="dining-table"
+          src="/models/dining_table.glb"
+        ></a-asset-item>
+      </a-assets>
+      <a-entity
+        gltf-model="#dining-table"
+        position="-6 0 -6"
+        scale="0.09 0.09 0.09"
+        rotation="10 10 0"
+      ></a-entity>
       <a-assets>
         <a-asset-item
           id="entry-door-sidelights"
@@ -81,6 +105,19 @@
         position="100 -4 -70"
         scale="0.05 0.05 0.05"
         rotation="0 45 0"
+      ></a-entity>
+
+      <a-assets>
+        <a-asset-item
+          id="building1"
+          src="/models/5_storey_residential_building.glb"
+        ></a-asset-item>
+      </a-assets>
+      <a-entity
+        gltf-model="#building1"
+        position="-10 0 50"
+        scale="1 1 1"
+        rotation="0 -90 0"
       ></a-entity>
 
       <a-assets>
@@ -128,7 +165,7 @@
       document.addEventListener("DOMContentLoaded", () => {
         const door2 = document.querySelector("#clickable-door2");
         door2.addEventListener("click", () => {
-            console.log("场景2的门被点中了！");
+         
           window.location.href = "../index.html";
         });
       });
