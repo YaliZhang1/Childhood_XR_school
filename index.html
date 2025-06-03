@@ -54,8 +54,7 @@
         rotation="0 0 0"
         class="clickable"
       >
-   
-    </a-entity>
+      </a-entity>
 
       <a-assets>
         <a-asset-item
@@ -103,6 +102,18 @@
         rotation="0 -90 0"
         animation="property: object3D.position.z; to:2; dir:alternate; dur:5000;loop:true"
       ></a-image>
+
+      <a-assets>
+        <a-asset-item id="pinwheel" src="/models/pinwheel.glb"></a-asset-item>
+      </a-assets>
+      <a-entity
+        gltf-model="#pinwheel"
+        position="0.8 2.4 -10"
+        scale="8 8 8"
+        rotation="0 0 -45"
+        animation__spin="property: rotation; from: 0 0 -15; to: 0 360 -15; loop: true; dur: 2000; easing: linear"
+      ></a-entity>
+
       <a-image
         src="/public/images/chengdu-door.jpg"
         position="-4.5 2 2"

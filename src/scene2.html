@@ -163,6 +163,17 @@
         rotation="0 90 0"
       ></a-entity>
 
+       <a-assets>
+        <a-asset-item id="pinwheel" src="/models/pinwheel.glb"></a-asset-item>
+      </a-assets>
+      <a-entity
+        gltf-model="#pinwheel"
+        position="-59 0 43.9"
+        scale="7 7 7"
+        rotation="0 0 -45"
+        animation__spin="property: rotation; from: 0 0 -15; to: 0 360 -15; loop: true; dur: 2000; easing: linear"
+      ></a-entity>
+
       <a-assets>
         <a-asset-item
           id="china_street_grey"
