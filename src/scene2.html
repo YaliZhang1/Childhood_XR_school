@@ -8,6 +8,11 @@
   <body>
     <a-scene>
       <a-assets>
+        <audio id="bgm" src="/audio/bgm.mp3" preload="auto"></audio>
+      </a-assets>
+
+      <a-sound src="#bgm" autoplay="true" loop="true"></a-sound>
+      <a-assets>
         <a-asset-item
           id="jp-red"
           src="/models/maybe_jp_drum.glb"
@@ -181,9 +186,6 @@
 
       <a-sky color="#fecc70"></a-sky>
 
-  
-
-
       <a-entity id="rig" position="0 0 0">
         <a-entity
           id="player-camera"
@@ -208,6 +210,14 @@
         door2.addEventListener("click", () => {
           window.location.href = "../index.html";
         });
+        document.body.addEventListener(
+          "click",
+          () => {
+            const sound = document.querySelector("a-sound");
+            sound.components.sound.playSound();
+          },
+          { once: true }
+        );
       });
     </script>
   </body>
