@@ -8,6 +8,36 @@
   </head>
   <body>
     <a-scene cursor="rayOrigin: mouse" raycaster="objects: .clickable">
+      <a-image
+        id="panda2"
+        class="clickable"
+        src="/images/panda2.jpg"
+        rotation="0 -60 0"
+        material="shader: flat;"
+        position="18 5 -7"
+        width="1.15"
+        height="1.1"
+        scale="5 5 5"
+      ></a-image>
+      <a-image
+        src="/images/panda3.jpg"
+        rotation="0 -60 0"
+        material="shader: flat;"
+        position="-30 10 -2"
+        width="2"
+        height="1.5"
+        scale="5 5 5"
+      ></a-image>
+      <a-image
+        src="/images/panda1.jpg"
+        rotation="0 -60 0"
+        material="shader: flat;"
+        position="30 5 8"
+        width="2"
+        height="1.5"
+        scale="5 5 5"
+      ></a-image>
+
       <a-assets>
         <audio id="bgm" src="/audio/bgm.mp3" preload="auto"></audio>
 
@@ -147,6 +177,26 @@
         ></a-entity>
       </a-entity>
 
+      <a-entity id="panda2-wrapper" rotation="0 -45 0" position="6 8 -2" look-at="#player-camera">
+        <a-plane
+          id="panda2Bg"
+          position="0 0 0"
+          width="8"
+          height="3"
+          visible="false"
+          color="#000000"
+          opacity="0.5"
+          material="shader: flat"
+        ></a-plane>
+        <a-entity
+          id="panda2Text"
+          position="0 0 0.01"
+          text="value: Pandas are deeply loved by the people of Sichuan. This is their homeland — and they are truly its beloved icons.; color: white; width: 6; align: center;side: double; wrapCount:30"
+          visible="false"
+          scale="1.5 1.5 1"
+        ></a-entity>
+      </a-entity>
+
       <a-entity
         gltf-model="#lumpia"
         position="-60 0 -5"
@@ -220,6 +270,10 @@
         const foodBg = document.querySelector("#street-food-bg");
         const hall = document.querySelector("#hall-click");
 
+        const panda2Cart = document.querySelector("#panda2");
+        const panda2Text = document.querySelector("#panda2Text");
+        const panda2Bg = document.querySelector("#panda2Bg");
+
         // Ensure GLTF model is loaded before binding click
         hall.addEventListener("model-loaded", () => {
           hall.addEventListener("click", () => {
@@ -262,6 +316,21 @@
               foodText.setAttribute("visible", false);
               foodBg.setAttribute("visible", false);
               isVisible = false;
+            }, 60000);
+          }
+        });
+        // Toggle visibility of panda2 info
+        let isVisiblePanda = false;
+        panda2Cart.addEventListener("click", () => {
+          isVisiblePanda = !isVisiblePanda;
+          panda2Text.setAttribute("visible", isVisiblePanda);
+          panda2Bg.setAttribute("visible", isVisiblePanda);
+          console.log("Panda clicked!");
+          if (isVisiblePanda) {
+            setTimeout(() => {
+              panda2Text.setAttribute("visible", false);
+              panda2Bg.setAttribute("visible", false);
+              isVisiblePanda = false;
             }, 60000);
           }
         });
