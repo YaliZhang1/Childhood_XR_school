@@ -63,6 +63,7 @@
           id="gate-china-yellow"
           src="/models/gates_in_china_style.glb"
         ></a-asset-item>
+        <a-asset-item id="bamboo" src="/models/bamboo.glb"></a-asset-item>
         <a-asset-item
           id="restaurant1"
           src="/models/restaurant1.glb"
@@ -86,6 +87,10 @@
         <a-asset-item
           id="building1"
           src="/models/5_storey_residential_building.glb"
+        ></a-asset-item>
+        <a-asset-item
+          id="office-plants"
+          src="/models/office_plants.glb"
         ></a-asset-item>
         <a-asset-item
           id="truck"
@@ -135,17 +140,38 @@
       ></a-entity>
 
       <a-entity
+        gltf-model="#bamboo"
+        position="-10 3 0"
+        scale="3 3 3"
+        rotation="0 45 0"
+      ></a-entity>
+
+      <a-entity
+        gltf-model="#bamboo"
+        position="-12 3 2"
+        scale="3 3 3"
+        rotation="0 90 0"
+      ></a-entity>
+
+      <a-entity
+        gltf-model="#bamboo"
+        position="25 3 -25"
+        scale="8 8 8"
+        rotation="0 90 0"
+      ></a-entity>
+
+      <a-entity
         gltf-model="#restaurant1"
         position="-15 7 -13"
         scale="7 7 7"
-        rotation="0 60 0"
+        rotation="0 0 0"
       >
         <a-entity
           gltf-model="#festive-red-light"
-          position="30 2 0"
+          position="18 5 -10"
           scale="1 1 1"
           animation__rotate="property: rotation; to: 0 360 0; loop: true; dur: 2000; easing: linear"
-          animation__float="property: position; dir: alternate; dur: 8000; loop: true; to: 0 3.3 -1"
+          animation__float="property: position; dir: alternate; dur: 8000; loop: true; to: -5 2 0"
         ></a-entity
       ></a-entity>
 
@@ -153,7 +179,7 @@
         id="floating-lantern"
         gltf-model="#festive-red-light"
         class="clickable target"
-        position="7 9.5 -2"
+        position="7 5.5 -2"
         scale="1 1 1"
         animation__rotate="property: rotation; to: 0 360 0; loop: true; dur: 5000; easing: linear"
       ></a-entity>
@@ -263,7 +289,30 @@
         scale="1 1 1"
         rotation="0 -90 0"
       ></a-entity>
-
+      <a-entity
+        gltf-model="#building1"
+        position="10 0 50"
+        scale="1 1 1"
+        rotation="0 -90 0"
+      ></a-entity>
+        <a-entity
+        gltf-model="#building1"
+        position="2 0 0"
+        scale="1 1 1"
+        rotation="0 90 0"
+      ></a-entity>
+      <a-entity
+        gltf-model="#office-plants"
+        position="-35 0 5"
+        scale="0.5 0.5 0.5"
+        rotation="0 0 0"
+      ></a-entity>
+      <a-entity
+        gltf-model="#office-plants"
+        position="35 0 12"
+        scale="0.5 0.5 0.5"
+        rotation="0 0 0"
+      ></a-entity>
       <a-entity
         gltf-model="#truck"
         position="-60 0 45"
@@ -338,22 +387,6 @@
         AFRAME.registerComponent("shootable", {
           init: function () {
             this.el.addEventListener("click", () => {
-              // 添加交互反馈，比如粒子特效
-              let explosion = document.createElement("a-entity");
-              explosion.setAttribute(
-                "position",
-                this.el.getAttribute("position")
-              );
-              explosion.setAttribute("particle-system", {
-                preset: "dust",
-                color: "#ff0000, #ffff00",
-                particleCount: 100,
-                size: 2,
-                duration: 1,
-              });
-              this.el.sceneEl.appendChild(explosion);
-
-              // 灯笼消失或动画反馈
               this.el.setAttribute("visible", "false");
               setTimeout(() => {
                 const x = Math.random() * 10 - 5;
