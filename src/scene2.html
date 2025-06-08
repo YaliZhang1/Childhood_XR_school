@@ -46,6 +46,28 @@
         height="1.5"
         scale="5 5 5"
       ></a-image>
+      <div
+        id="hud"
+        style="
+          position: fixed;
+          top: 1rem;
+          right: 2rem;
+          padding: 10px 15px;
+          z-index: 999;
+          background-image: url('https://www.transparenttextures.com/patterns/wood-pattern.png');
+          background-color: #462f1c;
+          background-size: cover;
+          background-repeat: no-repeat;
+          color: #f3f2cd;
+          border-radius: 8px;
+          box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+          font-size: 20px;
+        "
+      >
+        Score: <span id="score">0</span><br />
+        Time: <span id="time">30</span>
+      </div>
+
       <button
         id="play-music-btn"
         style="
@@ -129,7 +151,14 @@
         scale="0.1 0.1 0.1"
         rotation="0 180 0"
       ></a-entity>
-
+      <a-entity
+        id="target-lantern"
+        class="clickable"
+        gltf-model="#festive-red-light"
+        position="0 2 -4"
+        scale="2 2 2"
+        animation__float="property: position; dir: alternate; dur: 2000; loop: true; to: 0 2.3 -4"
+      ></a-entity>
       <a-entity
         id="floating-lantern"
         gltf-model="#festive-red-light"
@@ -513,6 +542,50 @@
               this.textContent = "Pause Music";
             }
           });
+
+        let score = 0;
+
+        let timeLeft = 30;
+        let gameInterval;
+
+        const lantern = document.querySelector("#target-lantern");
+        const scoreDisplay = document.getElementById("score");
+        const timeDisplay = document.getElementById("time");
+
+        document.querySelectorAll(".target").forEach((el) => {
+          el.addEventListener("click", function () {
+            score += 10;
+            scoreDisplay.textContent = score;
+            el.parentNode.removeChild(el); // 点完消失
+          });
+        });
+        // 灯笼被点击时
+        lantern.addEventListener("click", () => {
+          score++;
+          scoreDisplay.textContent = score;
+        });
+
+        // 开始游戏函数
+        function startGame() {
+          score = 0;
+          timeLeft = 30;
+          scoreDisplay.textContent = score;
+          timeDisplay.textContent = timeLeft;
+
+          gameInterval = setInterval(() => {
+            timeLeft--;
+            timeDisplay.textContent = timeLeft;
+            if (timeLeft <= 0) {
+              clearInterval(gameInterval);
+              alert("Game over! Your score:" + score);
+            }
+          }, 1000);
+        }
+
+        // 自动开始游戏
+        window.addEventListener("load", () => {
+          startGame();
+        });
       });
     </script>
   </body>
