@@ -11,12 +11,20 @@
   </head>
   <body>
     <a-scene cursor="rayOrigin: mouse" raycaster="objects: .clickable">
-      <a-entity
+      <!-- <a-entity
         hand-controls="hand: left; handModelStyle: lowPoly; color: #ffcccc"
       ></a-entity>
       <a-entity
         hand-controls="hand: right; handModelStyle: lowPoly; color: #ccccff"
+      ></a-entity> -->
+
+      <a-entity
+        id="right-hand"
+        laser-controls="hand: right"
+        raycaster="objects: .clickable"
+        super-hands
       ></a-entity>
+
       <a-image
         id="panda2"
         class="clickable"
@@ -72,7 +80,26 @@
         id="play-music-btn"
         style="
           position: fixed;
-          top: 10px;
+          top: 20px;
+          left: 10px;
+          z-index: 999;
+          background-color: #462f1c;
+          color: #b4a69c;
+          cursor: pointer;
+          transition: transform 0.2s ease;
+          height: 2rem;
+          width: 6rem;
+        "
+      >
+        Play Music
+      </button>
+      <button
+        id="start-game-btn"
+        style="
+          height: 2rem;
+          width: 6rem;
+          position: fixed;
+          top: 65px;
           left: 10px;
           z-index: 999;
           background-color: #462f1c;
@@ -81,7 +108,7 @@
           transition: transform 0.2s ease;
         "
       >
-        Play Music
+        Start Game
       </button>
       <a-sound
         id="bgm-sound"
@@ -165,7 +192,11 @@
         class="clickable target"
         shootable
         position="0 6 -3"
+        super-hands
         scale="1 1 1"
+        event-set__enter="_event: hover-start; scale: 1.2 1.2 1.2"
+        event-set__leave="_event: hover-end; scale: 1 1 1"
+        event-set__click="_event: grab-start; visible: false"
         animation__rotate="property: rotation; to: 0 360 0; loop: true; dur: 5000; easing: linear"
         animation__float="property: position; dir: alternate; dur: 2000; loop: true; to: 0 6.3 -3"
       ></a-entity>
@@ -216,6 +247,7 @@
       </a-entity>
       <a-entity
         gltf-model="#festive-red-light"
+        class="clickable target"
         position="15 5 0"
         scale="1 1 1"
         animation__rotate="property: rotation; to: 0 360 0; loop: true; dur: 2000; easing: linear"
@@ -223,6 +255,7 @@
       ></a-entity>
       <a-entity
         gltf-model="#festive-red-light"
+        class="clickable target"
         position="-15 5 0"
         scale="1 1 1"
         animation__rotate="property: rotation; to: 0 360 0; loop: true; dur: 2000; easing: linear"
@@ -246,18 +279,21 @@
       ></a-entity>
       <a-entity
         gltf-model="#dining-table"
+        class="clickable target"
         position="-5 0 -10"
         scale="0.1 0.1 0.1"
         rotation="10 10 0"
       ></a-entity>
       <a-entity
         gltf-model="#dining-table"
+        class="clickable target"
         position="-6 0 -6"
         scale="0.09 0.09 0.09"
         rotation="10 10 0"
       ></a-entity>
       <a-entity
         gltf-model="#dining-table"
+        class="clickable target"
         position="-28 0 -2"
         scale="0.09 0.09 0.09"
         rotation="5 5 0"
@@ -331,6 +367,7 @@
 
       <a-entity
         gltf-model="#lumpia"
+        class="clickable target"
         position="-30 0 -6"
         scale="0.01 0.01 0.01"
         rotation="0 -300 3"
@@ -395,6 +432,7 @@
       </a-entity>
       <a-entity
         gltf-model="#pinwheel"
+        class="clickable target"
         position="30 8 -10"
         scale="10 10 10"
         rotation="0 0 -45"
@@ -556,16 +594,15 @@
           el.addEventListener("click", function () {
             score += 10;
             scoreDisplay.textContent = score;
-            el.parentNode.removeChild(el); // 点完消失
+            el.parentNode.removeChild(el);
           });
         });
-        // 灯笼被点击时
+
         lantern.addEventListener("click", () => {
           score++;
           scoreDisplay.textContent = score;
         });
 
-        // 开始游戏函数
         function startGame() {
           score = 0;
           timeLeft = 30;
@@ -578,14 +615,16 @@
             if (timeLeft <= 0) {
               clearInterval(gameInterval);
               alert("Game over! Your score:" + score);
+              location.reload();
             }
           }, 1000);
         }
 
-        // 自动开始游戏
-        window.addEventListener("load", () => {
-          startGame();
-        });
+        document
+          .getElementById("start-game-btn")
+          .addEventListener("click", () => {
+            startGame();
+          });
       });
     </script>
   </body>
