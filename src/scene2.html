@@ -112,10 +112,10 @@
         gltf-model="#festive-red-light"
         class="clickable target"
         shootable
-        position="0 3 -3"
-        scale="0.8 0.8 0.8"
+        position="0 6 -3"
+        scale="1 1 1"
         animation__rotate="property: rotation; to: 0 360 0; loop: true; dur: 5000; easing: linear"
-        animation__float="property: position; dir: alternate; dur: 2000; loop: true; to: 0 3.3 -3"
+        animation__float="property: position; dir: alternate; dur: 2000; loop: true; to: 0 6.3 -3"
       ></a-entity>
 
       <a-entity
@@ -157,7 +157,14 @@
         scale="1 1 1"
         animation__rotate="property: rotation; to: 0 360 0; loop: true; dur: 5000; easing: linear"
       ></a-entity>
-
+      <a-entity
+        id="floating-lantern"
+        gltf-model="#festive-red-light"
+        class="clickable target"
+        position="-14 9.5 -2"
+        scale="1 1 1"
+        animation__rotate="property: rotation; to: 0 -360 0; loop: true; dur: 5000; easing: linear"
+      ></a-entity>
       <a-entity
         gltf-model="#dining-table"
         position="-5 0 -10"
@@ -270,6 +277,14 @@
         scale="7 7 7"
         rotation="0 0 -45"
         animation__spin="property: rotation; from: 0 0 -15; to: 0 360 -15; loop: true; dur: 2000; easing: linear"
+      >
+      </a-entity>
+      <a-entity
+        gltf-model="#pinwheel"
+        position="30 8 -10"
+        scale="10 10 10"
+        rotation="0 0 -45"
+        animation__spin="property: rotation; from: 0 0 0; to: 0 360 0; loop: true; dur: 2000; easing: linear"
       >
       </a-entity>
 
