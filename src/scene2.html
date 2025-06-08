@@ -46,10 +46,30 @@
         height="1.5"
         scale="5 5 5"
       ></a-image>
-
+      <button
+        id="play-music-btn"
+        style="
+          position: fixed;
+          top: 10px;
+          left: 10px;
+          z-index: 999;
+          background-color: #462f1c;
+          color: #b4a69c;
+          cursor: pointer;
+          transition: transform 0.2s ease;
+        "
+      >
+        Play Music
+      </button>
+      <a-sound
+        id="bgm-sound"
+        src="#bgm"
+        autoplay="false"
+        loop="true"
+        position="0 2 0"
+      ></a-sound>
       <a-assets>
-        <audio id="bgm" src="/audio/bgm.mp3" preload="auto"></audio>
-
+        <audio id="bgm" src="/audio/bgm.mp3"></audio>
         <a-asset-item
           id="festive-red-light"
           src="/models/festive_red_light.glb"
@@ -102,8 +122,6 @@
           src="/models/china_street.glb"
         ></a-asset-item>
       </a-assets>
-
-      <a-sound src="#bgm" autoplay="true" loop="true"></a-sound>
 
       <a-entity
         gltf-model="#jp-red"
@@ -182,7 +200,7 @@
         animation__float="property: position; dir: alternate; dur: 8000; loop: true; to: 5 10 0"
       ></a-entity>
       <a-entity
-        id="floating-lantern"
+        id="floating-lantern-1"
         gltf-model="#festive-red-light"
         class="clickable target"
         position="7 7 -2"
@@ -190,7 +208,7 @@
         animation__rotate="property: rotation; to: 0 360 0; loop: true; dur: 5000; easing: linear"
       ></a-entity>
       <a-entity
-        id="floating-lantern"
+        id="floating-lantern-2"
         gltf-model="#festive-red-light"
         class="clickable target"
         position="-14 9.5 -2"
@@ -482,15 +500,19 @@
           window.location.href = "../index.html";
         });
 
-        // Autoplay audio on user interaction
-        document.body.addEventListener(
-          "click",
-          () => {
-            const sound = document.querySelector("a-sound");
-            sound.components.sound.playSound();
-          },
-          { once: true }
-        );
+        // Play audio on user interaction
+        document
+          .getElementById("play-music-btn")
+          .addEventListener("click", function () {
+            const bgm = document.querySelector("#bgm-sound");
+            if (bgm.components.sound.isPlaying) {
+              bgm.components.sound.pauseSound();
+              this.textContent = "Play Music";
+            } else {
+              bgm.components.sound.playSound();
+              this.textContent = "Pause Music";
+            }
+          });
       });
     </script>
   </body>
