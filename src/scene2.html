@@ -3,11 +3,20 @@
   <head>
     <meta charset="UTF-8" />
     <title>Chengdu-street</title>
+    <meta name="description" content="VR Panda Game" />
     <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/IdeaSpaceVR/aframe-particle-system-component@1.0.2/dist/aframe-particle-system-component.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/super-hands@4.0.5/dist/super-hands.min.js"></script>
+    <script src="https://unpkg.com/aframe-teleport-controls/dist/aframe-teleport-controls.min.js"></script>
   </head>
   <body>
     <a-scene cursor="rayOrigin: mouse" raycaster="objects: .clickable">
+      <a-entity
+        hand-controls="hand: left; handModelStyle: lowPoly; color: #ffcccc"
+      ></a-entity>
+      <a-entity
+        hand-controls="hand: right; handModelStyle: lowPoly; color: #ccccff"
+      ></a-entity>
       <a-image
         id="panda2"
         class="clickable"
@@ -41,6 +50,10 @@
       <a-assets>
         <audio id="bgm" src="/audio/bgm.mp3" preload="auto"></audio>
 
+        <a-asset-item
+          id="festive-red-light"
+          src="/models/festive_red_light.glb"
+        ></a-asset-item>
         <a-asset-item
           id="jp-red"
           src="/models/maybe_jp_drum.glb"
@@ -95,6 +108,17 @@
       ></a-entity>
 
       <a-entity
+        id="floating-lantern"
+        gltf-model="#festive-red-light"
+        class="clickable target"
+        shootable
+        position="0 3 -3"
+        scale="0.8 0.8 0.8"
+        animation__rotate="property: rotation; to: 0 360 0; loop: true; dur: 5000; easing: linear"
+        animation__float="property: position; dir: alternate; dur: 2000; loop: true; to: 0 3.3 -3"
+      ></a-entity>
+
+      <a-entity
         id="hall-click"
         class="clickable"
         gltf-model="#hall"
@@ -115,6 +139,23 @@
         position="-15 7 -13"
         scale="7 7 7"
         rotation="0 60 0"
+      >
+        <a-entity
+          gltf-model="#festive-red-light"
+          position="30 2 0"
+          scale="1 1 1"
+          animation__rotate="property: rotation; to: 0 360 0; loop: true; dur: 2000; easing: linear"
+          animation__float="property: position; dir: alternate; dur: 8000; loop: true; to: 0 3.3 -1"
+        ></a-entity
+      ></a-entity>
+
+      <a-entity
+        id="floating-lantern"
+        gltf-model="#festive-red-light"
+        class="clickable target"
+        position="7 9.5 -2"
+        scale="1 1 1"
+        animation__rotate="property: rotation; to: 0 360 0; loop: true; dur: 5000; easing: linear"
       ></a-entity>
 
       <a-entity
@@ -177,7 +218,12 @@
         ></a-entity>
       </a-entity>
 
-      <a-entity id="panda2-wrapper" rotation="0 -45 0" position="6 8 -2" look-at="#player-camera">
+      <a-entity
+        id="panda2-wrapper"
+        rotation="0 -45 0"
+        position="6 8 -2"
+        look-at="#player-camera"
+      >
         <a-plane
           id="panda2Bg"
           position="0 0 0"
@@ -274,6 +320,36 @@
         const panda2Text = document.querySelector("#panda2Text");
         const panda2Bg = document.querySelector("#panda2Bg");
 
+        AFRAME.registerComponent("shootable", {
+          init: function () {
+            this.el.addEventListener("click", () => {
+              // 添加交互反馈，比如粒子特效
+              let explosion = document.createElement("a-entity");
+              explosion.setAttribute(
+                "position",
+                this.el.getAttribute("position")
+              );
+              explosion.setAttribute("particle-system", {
+                preset: "dust",
+                color: "#ff0000, #ffff00",
+                particleCount: 100,
+                size: 2,
+                duration: 1,
+              });
+              this.el.sceneEl.appendChild(explosion);
+
+              // 灯笼消失或动画反馈
+              this.el.setAttribute("visible", "false");
+              setTimeout(() => {
+                const x = Math.random() * 10 - 5;
+                const y = 3 + Math.random();
+                const z = Math.random() * -10;
+                this.el.setAttribute("position", `${x} ${y} ${z}`);
+                this.el.setAttribute("visible", "true");
+              }, 3000);
+            });
+          },
+        });
         // Ensure GLTF model is loaded before binding click
         hall.addEventListener("model-loaded", () => {
           hall.addEventListener("click", () => {
