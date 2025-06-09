@@ -2,6 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
+    <meta name="view-port" content="width=device-width, initial-scale=1.0" />
     <title>A-Frame with Vite</title>
     <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
   </head>
@@ -156,7 +157,7 @@
       document.addEventListener("DOMContentLoaded", () => {
         const door = document.querySelector("#clickable-door1");
         door.addEventListener("click", () => {
-          window.location.href = "/src/index.html";
+          window.location.href = "src/index.html";
         });
       });
     </script>
