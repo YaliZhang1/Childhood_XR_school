@@ -2,7 +2,7 @@
 
 ### Tools Used: Meshy AI, Blender, A-Frame, React, JavaScript, HTML, CSS, Netlify
 
-### 🚀 Deployment https://childwood.netlify.app/
+### 🚀 Deployment childhood-pinwheel.netlify.app
 
 ### 1.	Description
 This project explores how to use AI to generate 3D assets and combine them with traditional tools such as Blender to create interactive XR experiences. The scene includes a stylized Sichuan snack street, animated lanterns, panda models, house models… As well as interactive elements made with A-Frame.
